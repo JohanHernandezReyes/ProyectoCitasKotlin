@@ -1,6 +1,5 @@
 
 package ProyectoCitas.Repositories
-
 import ProyectoCitas.Domains.Entity.Appointment as Appointment
 import ProyectoCitas.Domains.responses.AppointmentRes as AppointmentRes
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +13,6 @@ class AppointmentRepository {
    
    @Autowired
    private lateinit var AppointmentRepositoryIfc: AppointmentRepositoryIfc
-
 
     fun createAppointment(Appointment:Appointment):Appointment{
           return AppointmentRepositoryIfc.save(Appointment)

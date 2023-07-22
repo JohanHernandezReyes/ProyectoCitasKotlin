@@ -12,7 +12,7 @@ import java.util.Optional
 
 @Service
 class PatientService{
-    
+  
    @Autowired
    private lateinit var PatientRepository: PatientRepository
 
@@ -44,10 +44,12 @@ class PatientService{
           return paciente           
     }
 
+
      fun GetPatientByIdentif(identif:String):Optional<Patient> {
           var paciente: Optional<Patient> =  PatientRepository.GetPatientByIdentif(identif)
           return paciente           
     }
+
     
     fun GetAllPatients():MutableList<Patient>{
           var pacientes: MutableList<Patient> = PatientRepository.GetAllPatients()
@@ -56,6 +58,7 @@ class PatientService{
     
 
     fun UpdatePatient(request: PatientReq, id:Long):Optional<Patient> {
+
           var paciente: Optional<Patient> =  PatientRepository.GetPatientById(id)
         
           if (paciente!=null){ 
@@ -75,6 +78,7 @@ class PatientService{
     }
 
     fun DeletePatient(id:Long){
+
           var paciente: Optional<Patient> =  PatientRepository.GetPatientById(id)
           if (paciente!=null){
                     PatientRepository.DeletePatient(id)

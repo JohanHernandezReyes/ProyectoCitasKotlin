@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import java.util.Optional
 
-
 interface DoctorRepositoryIfc : JpaRepository<Doctor, Long> {
     
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
@@ -25,6 +24,7 @@ interface DoctorRepositoryIfc : JpaRepository<Doctor, Long> {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Query("delete from doctores where id_doctor = :id", nativeQuery = true)
     fun DeleteById(id: Long)
+
 
 
 }

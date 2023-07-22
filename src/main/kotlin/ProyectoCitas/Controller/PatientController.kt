@@ -32,7 +32,6 @@ class PatientController{
         fun getPatientByIdentif(@PathVariable("identif") identif: String
     ):Optional<Patient> = PatientService.GetPatientByIdentif(identif)
 
-
     @PostMapping("$Route/create")
        fun createPatient(
         @RequestBody @Valid request: PatientReq,
@@ -44,6 +43,7 @@ class PatientController{
         @RequestBody @Valid request: PatientReq,
         @PathVariable("id") id: Long
     ):Optional<Patient> = PatientService.UpdatePatient(request, id)
+
 
     @DeleteMapping("$Route/delete/{id}")
     fun deletePatient(

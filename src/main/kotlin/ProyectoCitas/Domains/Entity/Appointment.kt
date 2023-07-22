@@ -22,11 +22,11 @@ open class Appointment(
 
     @ManyToOne
     @JoinColumn(name="id_doctor", referencedColumnName = "id_doctor")
-    open var id_doctor: Long,
+    open var id_doctor: Doctor,
 
     @ManyToOne
     @JoinColumn(name="identif_paciente", referencedColumnName ="identif_paciente")
-    open var identif_paciente: String,
+    open var identif_paciente: Patient,
 
     @Column(name="created_at")
     open var created_at: Instant = Instant.now(),

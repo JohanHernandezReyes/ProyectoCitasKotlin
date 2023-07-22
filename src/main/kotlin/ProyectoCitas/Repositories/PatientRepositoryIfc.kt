@@ -24,5 +24,4 @@ interface PatientRepositoryIfc : JpaRepository<Patient, Long> {
     @Query("delete from pacientes where id_paciente = :id", nativeQuery = true)
     fun DeletePatient(id: Long)
 
-
 }
