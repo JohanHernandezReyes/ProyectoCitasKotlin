@@ -8,37 +8,56 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import ProyectoCitas.Domains.requests.PatientReq as PatientReq
 import ProyectoCitas.Domains.responses.PatientRes as PatientRes
+import ProyectoCitas.Services.PatientService
+import ProyectoCitas.Domains.Entity.Patient as Patient
 import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
+import java.util.Optional
 
 
 @RestController
 class PatientController{
 
-     @Autowired
+    @Autowired
     private lateinit var PatientService:PatientService
 
     @GetMapping("$Route/list")
-    fun getAllPatients():List<ResPatient> = PatientService.GetAllPatients()
+    fun getAllPatients():MutableList<Patient> = PatientService.GetAllPatients()
 
     @GetMapping("$Route/{id}")
-        fun getPatientById(@PathVariable("id") id: Int
-    ):PatientRes = PatientService.GetPatientById(id)
+        fun getPatientById(@PathVariable("id") id: Long
+    ):Optional<Patient> = PatientService.GetPatientById(id)
+
+     @GetMapping("$Route/identif/{identif}")
+        fun getPatientByIdentif(@PathVariable("identif") identif: String
+<<<<<<< HEAD
+    ):Optional<Patient> = PatientService.GetPatientByIdentif(identif)
+=======
+    ):Optional<Patient>= PatientService.GetPatientByIdentif(identif)
+>>>>>>> a9dd4bf (Actualización Repository y entities)
+
 
     @PostMapping("$Route/create")
        fun createPatient(
         @RequestBody @Valid request: PatientReq,
         @RequestHeader("HeaderExample") headerTest: String
-    ):DoctorPatient = DoctorService.createPatient(request, headerTest)
+    ):PatientRes? = PatientService.createPatient(request, headerTest)
 
     @PutMapping("$Route/update/{id}")
      fun updatePatient(
-        @PathVariable("id") id: Int
-    ):PatientRes = PatientService.UpdatePatient(id)
+<<<<<<< HEAD
+        @RequestBody @Valid request: PatientReq,
+        @PathVariable("id") id: Long
+    ):Optional<Patient> = PatientService.UpdatePatient(request, id)
+=======
+        @RequestBody @Valid request: DoctorReq,
+        @PathVariable("id") id: Long
+    ):Optional<Patient>= PatientService.UpdatePatient(request, id)
+>>>>>>> a9dd4bf (Actualización Repository y entities)
 
     @DeleteMapping("$Route/delete/{id}")
     fun deletePatient(
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = PatientService.DeletePatient(id)
 
 }
