@@ -6,6 +6,7 @@ import ProyectoCitas.Domains.requests.AppointmentReq as AppointmentReq
 import ProyectoCitas.Domains.responses.AppointmentRes as AppointmentRes
 import org.springframework.beans.factory.annotation.Autowired
 import ProyectoCitas.Repositories.AppointmentRepository
+
 import ProyectoCitas.Repositories.DoctorRepository
 import ProyectoCitas.Repositories.PatientRepository
 import java.time.Instant
@@ -26,8 +27,7 @@ class AppointmentService{
    @Autowired
    private lateinit var PatientRepository: PatientRepository 
 
-    fun createAppointment(request: AppointmentReq, header:String):AppointmentRes?{
-          
+    fun createAppointment(request: AppointmentReq, header:String):AppointmentRes?{   
           val cita =AppointmentRepository.createAppointment(
           Appointment(
                     horario = request.horario,
@@ -69,12 +69,14 @@ class AppointmentService{
           println(header)
     }
 
+
     fun GetAppointmentById(id:Long):Optional<Appointment> {
           var cita: Optional< Appointment> =  AppointmentRepository.GetAppointmentById(id)
           return cita           
     }
 
     
+
     fun GetAllAppointments():MutableList<Appointment>{
           var citas: MutableList<Appointment> = AppointmentRepository.GetAllAppointments()
           return citas
@@ -82,6 +84,7 @@ class AppointmentService{
     
 
     fun UpdateAppointment(request: AppointmentReq, id:Long):Optional<Appointment> {
+
           var cita: Optional<Appointment> =  AppointmentRepository.GetAppointmentById(id)
         
           if (cita!=null){ 

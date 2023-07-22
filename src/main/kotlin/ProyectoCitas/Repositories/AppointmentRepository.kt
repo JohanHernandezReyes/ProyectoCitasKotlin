@@ -16,11 +16,19 @@ class AppointmentRepository {
    private lateinit var AppointmentRepositoryIfc: AppointmentRepositoryIfc
 
 
+
     fun createAppointment(Appointment:Appointment):Appointment{
           return AppointmentRepositoryIfc.save(Appointment)
     }
 
     fun GetAppointmentById(id:Long):Optional<Appointment>{
+
+    fun createAppointment(Appointmentr:Appointment):Appointment{
+          return AppointmentRepositoryIfc.save(Appointment)
+    }
+
+    fun GetAppointmentrById(id:Long):Optional<Appointmentr>{
+
          return AppointmentRepositoryIfc.findById(id)
     }
 

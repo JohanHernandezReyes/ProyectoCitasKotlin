@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 import java.util.Optional
+import java.util.Optional
 
 interface AppointmentRepositoryIfc : JpaRepository<Appointment, Long> {
 
@@ -16,7 +17,8 @@ interface AppointmentRepositoryIfc : JpaRepository<Appointment, Long> {
     @Query("select * from citas where id_cita = :id", nativeQuery = true)
     fun getByAppointmentById(id: Long): Optional<Appointment>
 
-     @Transactional(propagation = Propagation.NOT_SUPPORTED)
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Query("select * from citas",  nativeQuery = true)
     fun getAllAppointments(): List<Appointment>?
 

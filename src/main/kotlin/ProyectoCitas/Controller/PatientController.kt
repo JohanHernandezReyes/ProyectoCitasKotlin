@@ -30,8 +30,8 @@ class PatientController{
 
      @GetMapping("$Route/identif/{identif}")
         fun getPatientByIdentif(@PathVariable("identif") identif: String
-    ):Optional<Patient> = PatientService.GetPatientByIdentif(identif)
 
+    ):Optional<Patient> = PatientService.GetPatientByIdentif(identif)
 
     @PostMapping("$Route/create")
        fun createPatient(
@@ -41,9 +41,19 @@ class PatientController{
 
     @PutMapping("$Route/update/{id}")
      fun updatePatient(
+
         @RequestBody @Valid request: PatientReq,
         @PathVariable("id") id: Long
     ):Optional<Patient> = PatientService.UpdatePatient(request, id)
+
+        @RequestBody @Valid request: PatientReq,
+        @PathVariable("id") id: Long
+    ):Optional<Patient> = PatientService.UpdatePatient(request, id)
+
+        @RequestBody @Valid request: DoctorReq,
+        @PathVariable("id") id: Long
+    ):Optional<Patient>= PatientService.UpdatePatient(request, id)
+
 
     @DeleteMapping("$Route/delete/{id}")
     fun deletePatient(

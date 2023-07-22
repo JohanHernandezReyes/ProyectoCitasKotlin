@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 import java.util.Optional
 
+
+
 interface PatientRepositoryIfc : JpaRepository<Patient, Long> {
 
      @Transactional(propagation = Propagation.NOT_SUPPORTED)
@@ -23,6 +25,15 @@ interface PatientRepositoryIfc : JpaRepository<Patient, Long> {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Query("delete from pacientes where id_paciente = :id", nativeQuery = true)
     fun DeletePatient(id: Long)
+
+     @Transactional(propagation = Propagation.NOT_SUPPORTED)
+     @Query("select * from pacientes where identif = :identif", nativeQuery = true)
+     fun getByPatientByIdentif(identif: String): Patient?
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Query("delete from pacientes where id_paciente = :id", nativeQuery = true)
+    fun DeletePatient(id: Long): Patient?
+
 
 
 }

@@ -40,6 +40,7 @@ class AppointmentController{
         @PathVariable("id") id: Long
     ):Optional<Appointment> = AppointmentService.UpdateAppointment(request, id)
 
+
     @DeleteMapping("$Route/delete/{id}")
     fun deleteAppointment(
         @PathVariable("id") id: Long
