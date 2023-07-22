@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import ProyectoCitas.Domains.requests.DoctorReq as DoctorReq
 import ProyectoCitas.Domains.responses.DoctorRes as DoctorRes
+import ProyectoCitas.Domains.Entity.Doctor as Doctor
 import ProyectoCitas.Services.DoctorService
 import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
+import java.util.Optional
 
 
 @RestController
@@ -20,27 +22,28 @@ class DoctorController{
     private lateinit var DoctorService:DoctorService
 
     @GetMapping("$Route/list")
-    fun getAllDoctors():List<DoctorRes> = DoctorService.GetAllDoctors()
+    fun getAllDoctors():MutableList<Doctor> = DoctorService.GetAllDoctors()
 
     @GetMapping("$Route/{id}")
     fun getDoctorById(
-        @PathVariable("id") id: Int
-    ):DoctorRes = DoctorService.GetDoctorById(id)
+        @PathVariable("id") id: Long
+    ):Optional<Doctor> = DoctorService.GetDoctorById(id)
 
     @PostMapping("$Route/create")
     fun createDoctor(
         @RequestBody @Valid request: DoctorReq,
         @RequestHeader("HeaderExample") headerTest: String
-    ):DoctorRes = DoctorService.createDoctor(request, headerTest)
+    ):DoctorRes? = DoctorService.createDoctor(request, headerTest)
 
     @PutMapping("$Route/update/{id}")
     fun updateDoctor(
-        @PathVariable("id") id: Int
-    ):DoctorRes = DoctorService.UpdateDoctor(id)
+        @RequestBody @Valid request: DoctorReq,
+        @PathVariable("id") id: Long
+    ):Optional<Doctor> = DoctorService.UpdateDoctor(request, id)
 
     @DeleteMapping("$Route/delete/{id}")
     fun deleteDoctor(
-        @PathVariable("id") id: Int
+        @PathVariable("id") id: Long
     ) = DoctorService.DeleteDoctor(id)
 
 }

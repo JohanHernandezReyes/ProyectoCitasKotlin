@@ -1,16 +1,12 @@
 package ProyectoCitas.Domains.responses
 
 import java.time.Instant
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
 
-@Table("citas")
 data class AppointmentRes(
-    @Id
-    var id_cita: Int?,
-    
+   
+    val id_cita: Long, 
     val horario: String,
-    val id_doctor: Int,
+    val id_doctor: Long,
     val identif_paciente: String,
     val nombre_paciente:String,
     val nombre_doctor:String,

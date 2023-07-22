@@ -1,14 +1,10 @@
+
 package ProyectoCitas.Domains.responses
 
 import java.time.Instant
-import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
 
-@Table("doctores")
 data class DoctorRes(
-    @Id
-    var id_doctor: Int?,
-    
+    val id_doctor: Long,
     val nombre: String,
     val apellido: String,
     val consultorio: Long,
@@ -17,5 +13,5 @@ data class DoctorRes(
     val created_at: Instant?,
     val updated_at: Instant?
 ){
-   
+
 }
